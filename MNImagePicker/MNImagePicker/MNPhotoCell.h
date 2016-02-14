@@ -11,6 +11,7 @@
 @interface MNPhotoCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *iImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *iCheckImage;
 
 
 @end

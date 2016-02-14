@@ -26,7 +26,7 @@ static ALAssetsLibrary *assetsLibrary;
         self.delegate = delegate;
         self.container = controller;
         self.config = config;
-        self.images = @[];
+        self.images = [NSMutableArray new];
         if (assetsLibrary == nil) {
             assetsLibrary = [ALAssetsLibrary new];
         }

@@ -133,16 +133,26 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xmH-eW-W5w">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5hu-3j-9Fj">
+                                                    <rect key="frame" x="29" y="0.0" width="21" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="21" id="SCe-nG-vXa"/>
+                                                        <constraint firstAttribute="height" constant="21" id="jPy-vG-YCh"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
                                             <constraint firstItem="xmH-eW-W5w" firstAttribute="leading" secondItem="UaK-RJ-VdG" secondAttribute="leading" id="1Eo-ug-vRs"/>
                                             <constraint firstAttribute="bottom" secondItem="xmH-eW-W5w" secondAttribute="bottom" id="3H3-2Z-viG"/>
+                                            <constraint firstItem="5hu-3j-9Fj" firstAttribute="top" secondItem="UaK-RJ-VdG" secondAttribute="top" id="Gw4-ce-jYN"/>
                                             <constraint firstAttribute="trailing" secondItem="xmH-eW-W5w" secondAttribute="trailing" id="Jeq-ma-iT4"/>
                                             <constraint firstItem="xmH-eW-W5w" firstAttribute="top" secondItem="UaK-RJ-VdG" secondAttribute="top" id="LP9-G0-1Vw"/>
+                                            <constraint firstAttribute="trailing" secondItem="5hu-3j-9Fj" secondAttribute="trailing" id="v67-kn-846"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="iCheckImage" destination="5hu-3j-9Fj" id="8Ve-xJ-C9z"/>
                                             <outlet property="iImageView" destination="xmH-eW-W5w" id="ynh-a2-R8W"/>
                                         </connections>
                                     </collectionViewCell>
@@ -209,7 +219,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vY2-f6-AgX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="958" y="306"/>
+            <point key="canvasLocation" x="955" y="306"/>
         </scene>
     </scenes>
 </document>

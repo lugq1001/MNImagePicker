@@ -17,10 +17,11 @@
 		314AA42B1C6F37B800DA3B4E /* MNImagePickerConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 314AA42A1C6F37B800DA3B4E /* MNImagePickerConfig.m */; };
 		314AA42E1C6F495400DA3B4E /* MNAlbumsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 314AA42D1C6F495400DA3B4E /* MNAlbumsController.m */; };
 		314AA4311C6F496500DA3B4E /* MNPhotosController.m in Sources */ = {isa = PBXBuildFile; fileRef = 314AA4301C6F496500DA3B4E /* MNPhotosController.m */; };
-		314AA4331C6F63A400DA3B4E /* MNImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 314AA4321C6F63A400DA3B4E /* MNImagePicker.storyboard */; };
 		314AA4361C6F6A0000DA3B4E /* MNPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 314AA4351C6F6A0000DA3B4E /* MNPhotoCell.m */; };
 		314AA4391C6F6AFC00DA3B4E /* MNImagePickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 314AA4381C6F6AFC00DA3B4E /* MNImagePickerHelper.m */; };
 		31519BAD1C702DE400C223EF /* MNAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31519BAC1C702DE400C223EF /* MNAlbumCell.m */; };
+		31519BB11C706FB000C223EF /* ic_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 31519BAF1C706FB000C223EF /* ic_check.png */; };
+		31519BB21C706FB000C223EF /* MNImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31519BB01C706FB000C223EF /* MNImagePicker.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,13 +43,14 @@
 		314AA42D1C6F495400DA3B4E /* MNAlbumsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNAlbumsController.m; sourceTree = "<group>"; };
 		314AA42F1C6F496500DA3B4E /* MNPhotosController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNPhotosController.h; sourceTree = "<group>"; };
 		314AA4301C6F496500DA3B4E /* MNPhotosController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNPhotosController.m; sourceTree = "<group>"; };
-		314AA4321C6F63A400DA3B4E /* MNImagePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MNImagePicker.storyboard; sourceTree = "<group>"; };
 		314AA4341C6F6A0000DA3B4E /* MNPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNPhotoCell.h; sourceTree = "<group>"; };
 		314AA4351C6F6A0000DA3B4E /* MNPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNPhotoCell.m; sourceTree = "<group>"; };
 		314AA4371C6F6AFC00DA3B4E /* MNImagePickerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNImagePickerHelper.h; sourceTree = "<group>"; };
 		314AA4381C6F6AFC00DA3B4E /* MNImagePickerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNImagePickerHelper.m; sourceTree = "<group>"; };
 		31519BAB1C702DE400C223EF /* MNAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNAlbumCell.h; sourceTree = "<group>"; };
 		31519BAC1C702DE400C223EF /* MNAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNAlbumCell.m; sourceTree = "<group>"; };
+		31519BAF1C706FB000C223EF /* ic_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_check.png; sourceTree = "<group>"; };
+		31519BB01C706FB000C223EF /* MNImagePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MNImagePicker.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,9 +122,18 @@
 				314AA4351C6F6A0000DA3B4E /* MNPhotoCell.m */,
 				314AA4371C6F6AFC00DA3B4E /* MNImagePickerHelper.h */,
 				314AA4381C6F6AFC00DA3B4E /* MNImagePickerHelper.m */,
-				314AA4321C6F63A400DA3B4E /* MNImagePicker.storyboard */,
+				31519BAE1C706FB000C223EF /* res */,
 			);
 			path = MNImagePicker;
+			sourceTree = "<group>";
+		};
+		31519BAE1C706FB000C223EF /* res */ = {
+			isa = PBXGroup;
+			children = (
+				31519BAF1C706FB000C223EF /* ic_check.png */,
+				31519BB01C706FB000C223EF /* MNImagePicker.storyboard */,
+			);
+			path = res;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,10 +192,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31519BB11C706FB000C223EF /* ic_check.png in Resources */,
 				314AA41E1C6F351400DA3B4E /* LaunchScreen.storyboard in Resources */,
 				314AA41B1C6F351400DA3B4E /* Assets.xcassets in Resources */,
 				314AA4191C6F351400DA3B4E /* Main.storyboard in Resources */,
-				314AA4331C6F63A400DA3B4E /* MNImagePicker.storyboard in Resources */,
+				31519BB21C706FB000C223EF /* MNImagePicker.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

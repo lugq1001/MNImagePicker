@@ -13,11 +13,11 @@
 @interface MNPhotosController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *iCollectionView;
-@property (nonatomic) NSArray *photos;
 @property (weak, nonatomic) IBOutlet UIButton *iCompleteButton;
 @property (weak, nonatomic) IBOutlet UILabel *iCountLabel;
 @property (weak, nonatomic) IBOutlet UIView *iCountView;
 
+@property (nonatomic) NSArray *photos;
 
 @end
 
@@ -26,8 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
     _iCollectionView.backgroundColor = [UIColor whiteColor];
+    _iCollectionView.collectionViewLayout = [self layout];
     UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
     self.navigationItem.rightBarButtonItem = right;
 }
@@ -51,6 +51,10 @@
     [MNImagePickerHelper loadPhotos:_album completion:^(NSArray *photos) {
         _photos = photos;
         [_iCollectionView reloadData];
+        if (_photos.count > 0) {
+            [_iCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_photos.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:false];
+        }
+        
     }];
 }
 
@@ -68,7 +72,7 @@
 }
 
 - (IBAction)complete:(UIButton *)sender {
-    
+    [self dismiss];
 }
 
 
@@ -85,20 +89,63 @@
     MNPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MNPhotoCell" forIndexPath:indexPath];
     ALAsset *result = [_photos objectAtIndex:indexPath.row];
     CGImageRef ref = [result thumbnail];
-    UIImage *img = [[UIImage alloc]initWithCGImage:ref];
+    UIImage *img = [[UIImage alloc] initWithCGImage:ref];
     cell.iImageView.image = img;
+    cell.iCheckImage.hidden = ![self hasSelected:result];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    ALAsset *photo = [_photos objectAtIndex:indexPath.row];
     if (_picker.config.maxCount == 1) {
-        _picker.images = @[_photos[indexPath.row]];
+        _picker.images = [[NSMutableArray alloc] initWithArray:@[photo]];
         [self dismiss];
     } else {
-        
+        if ([self hasSelected:photo]) {
+            [self removeSelected:photo];
+        } else {
+            if (_picker.images.count < _picker.config.maxCount) {
+                [_picker.images addObject:photo];
+            }
+        }
+        [self updateCount];
+        [_iCollectionView reloadData];
     }
 }
 
+#pragma mark - Helper
+- (UICollectionViewFlowLayout *)layout {
+    UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+    CGFloat dWidth = [UIScreen mainScreen].bounds.size.width;
+    NSUInteger col = 4;
+    CGFloat spacing = 4.0;
+    CGFloat itemW = (dWidth - spacing * (col + 1)) / col;
+    layout.sectionInset = UIEdgeInsetsMake(spacing, spacing, spacing, spacing);
+    layout.itemSize = CGSizeMake(itemW, itemW);
+    layout.minimumInteritemSpacing = spacing;
+    layout.minimumLineSpacing = spacing;
+    return layout;
+}
+
+- (BOOL)hasSelected:(ALAsset *)photo {
+    NSURL *u = photo.defaultRepresentation.url;
+    for (ALAsset *a in _picker.images) {
+        if ([a.defaultRepresentation.url isEqual:u]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+- (void)removeSelected:(ALAsset *)photo {
+    NSURL *u = photo.defaultRepresentation.url;
+    for (NSUInteger i = 0; i < _picker.images.count; i++) {
+        ALAsset *a = _picker.images[i];
+        if ([a.defaultRepresentation.url isEqual:u]) {
+            [_picker.images removeObjectAtIndex:i];
+        }
+    }
+}
 
 @end
 

@@ -23,7 +23,7 @@
 @property (nonatomic) id<MNImagePickerDelegate> delegate;
 @property (nonatomic) MNImagePickerConfig *config;
 @property (nonatomic) UIImage *imageByCamera;
-@property (nonatomic) NSArray *images;
+@property (nonatomic) NSMutableArray *images;
 
 
 - (instancetype)init:(UIViewController *)controller config:(MNImagePickerConfig *)config delegate:(id<MNImagePickerDelegate>)delegate;
