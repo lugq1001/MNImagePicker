@@ -12,6 +12,7 @@
 @interface MNImagePickerHelper : NSObject
 
 + (void)loadAlbums:(void(^)(NSArray *))completion;
-+ (void)loadPhotos:(void(^)(NSArray *))completion;
++ (void)loadPhotos:(ALAssetsGroup *)group completion:(void(^)(NSArray *))completion;
+
 
 @end

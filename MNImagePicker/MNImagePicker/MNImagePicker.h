@@ -11,13 +11,22 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "MNImagePickerConfig.h"
 
+@protocol MNImagePickerDelegate
+
+- (void)imagePickerDidFinishedFromAlbum;
+- (void)imagePickerDidFinishedFromCamera;
+
+@end
 
 @interface MNImagePicker : NSObject
 
+@property (nonatomic) id<MNImagePickerDelegate> delegate;
+@property (nonatomic) MNImagePickerConfig *config;
 @property (nonatomic) UIImage *imageByCamera;
+@property (nonatomic) NSArray *images;
 
 
-- (instancetype)init:(UIViewController *)controller config:(MNImagePickerConfig *)config;
+- (instancetype)init:(UIViewController *)controller config:(MNImagePickerConfig *)config delegate:(id<MNImagePickerDelegate>)delegate;
 
 - (void)startPicker;
 

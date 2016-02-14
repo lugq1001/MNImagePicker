@@ -15,6 +15,7 @@
     MNImagePickerConfig *config = [MNImagePickerConfig new];
     config.allowCameraEditing = true;
     config.compressQuality = 0.7;
+    config.maxCount = 1;
     return config;
 }
 

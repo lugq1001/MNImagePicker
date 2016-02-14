@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "MNImagePicker.h"
 
-@interface ViewController ()
+@interface ViewController () <MNImagePickerDelegate>
 
 @property (nonatomic) MNImagePicker *picker;
 
@@ -19,11 +19,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _picker = [[MNImagePicker alloc] init:self config:[MNImagePickerConfig defaultConfig]];
+    MNImagePickerConfig *config = [MNImagePickerConfig defaultConfig];
+    config.maxCount = 3;
+    _picker = [[MNImagePicker alloc] init:self config:config delegate:self];
 }
 
 - (IBAction)choose:(id)sender {
     [_picker startPicker];
+}
+
+- (void)imagePickerDidFinishedFromAlbum {
+    NSLog(@"选择相册照片:%ld",_picker.images.count);
+}
+
+- (void)imagePickerDidFinishedFromCamera {
+    NSLog(@"拍摄照片:%d",_picker.imageByCamera == nil ? 0 : 1);
 }
 
 

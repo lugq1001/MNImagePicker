@@ -20,6 +20,7 @@
 		314AA4331C6F63A400DA3B4E /* MNImagePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 314AA4321C6F63A400DA3B4E /* MNImagePicker.storyboard */; };
 		314AA4361C6F6A0000DA3B4E /* MNPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 314AA4351C6F6A0000DA3B4E /* MNPhotoCell.m */; };
 		314AA4391C6F6AFC00DA3B4E /* MNImagePickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 314AA4381C6F6AFC00DA3B4E /* MNImagePickerHelper.m */; };
+		31519BAD1C702DE400C223EF /* MNAlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 31519BAC1C702DE400C223EF /* MNAlbumCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,8 @@
 		314AA4351C6F6A0000DA3B4E /* MNPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNPhotoCell.m; sourceTree = "<group>"; };
 		314AA4371C6F6AFC00DA3B4E /* MNImagePickerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNImagePickerHelper.h; sourceTree = "<group>"; };
 		314AA4381C6F6AFC00DA3B4E /* MNImagePickerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNImagePickerHelper.m; sourceTree = "<group>"; };
+		31519BAB1C702DE400C223EF /* MNAlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNAlbumCell.h; sourceTree = "<group>"; };
+		31519BAC1C702DE400C223EF /* MNAlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNAlbumCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,11 +114,13 @@
 				314AA42D1C6F495400DA3B4E /* MNAlbumsController.m */,
 				314AA42F1C6F496500DA3B4E /* MNPhotosController.h */,
 				314AA4301C6F496500DA3B4E /* MNPhotosController.m */,
-				314AA4321C6F63A400DA3B4E /* MNImagePicker.storyboard */,
+				31519BAB1C702DE400C223EF /* MNAlbumCell.h */,
+				31519BAC1C702DE400C223EF /* MNAlbumCell.m */,
 				314AA4341C6F6A0000DA3B4E /* MNPhotoCell.h */,
 				314AA4351C6F6A0000DA3B4E /* MNPhotoCell.m */,
 				314AA4371C6F6AFC00DA3B4E /* MNImagePickerHelper.h */,
 				314AA4381C6F6AFC00DA3B4E /* MNImagePickerHelper.m */,
+				314AA4321C6F63A400DA3B4E /* MNImagePicker.storyboard */,
 			);
 			path = MNImagePicker;
 			sourceTree = "<group>";
@@ -159,7 +164,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = 314AA4021C6F351400DA3B4E;
@@ -195,6 +199,7 @@
 				314AA4161C6F351400DA3B4E /* ViewController.m in Sources */,
 				314AA4311C6F496500DA3B4E /* MNPhotosController.m in Sources */,
 				314AA42E1C6F495400DA3B4E /* MNAlbumsController.m in Sources */,
+				31519BAD1C702DE400C223EF /* MNAlbumCell.m in Sources */,
 				314AA4131C6F351400DA3B4E /* AppDelegate.m in Sources */,
 				314AA4281C6F357200DA3B4E /* MNImagePicker.m in Sources */,
 				314AA4361C6F6A0000DA3B4E /* MNPhotoCell.m in Sources */,
@@ -350,6 +355,7 @@
 				314AA4241C6F351400DA3B4E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

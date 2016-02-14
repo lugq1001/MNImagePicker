@@ -7,7 +7,7 @@
 //
 
 #import "MNImagePickerHelper.h"
-#import <AssetsLibrary/AssetsLibrary.h>
+
 
 @implementation MNImagePickerHelper
 
@@ -35,27 +35,34 @@
                 
         }
     };
-    [[MNImagePicker assetsLib] enumerateGroupsWithTypes:ALAssetsGroupAll
+    ALAssetsGroupType type = ALAssetsGroupSavedPhotos | ALAssetsGroupAlbum;
+    [[MNImagePicker assetsLib] enumerateGroupsWithTypes:type
                                              usingBlock:listGroupBlock
                                            failureBlock:failureBlock];
 }
 
 
-+ (void)loadPhotos:(void(^)(NSArray *))completion
++ (void)loadPhotos:(ALAssetsGroup *)group completion:(void(^)(NSArray *))completion
 {
     NSMutableArray *photos = [NSMutableArray new];
-    NSMutableSet *sets = [NSMutableSet new];
+    if (group != nil) {
+        [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+        [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
+            if(result != nil) {
+                [photos addObject:result];
+            } else {
+                completion(photos);
+            }
+        }];
+        return;
+    }
+    
     ALAssetsLibraryGroupsEnumerationResultsBlock listGroupBlock = ^(ALAssetsGroup *group, BOOL *stop) {
         if (group != nil) {
             [group setAssetsFilter:[ALAssetsFilter allPhotos]];
             [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
                 if(result != nil) {
-                    NSURL *uti = [[result defaultRepresentation] url];
-                    NSLog(@"%@",uti);
-                    if (![sets containsObject:uti]) {
-                        [photos addObject:result];
-                        [sets addObject:uti];
-                    }
+                    [photos addObject:result];
                 }
             }];
         } else {
@@ -81,6 +88,7 @@
                                              usingBlock:listGroupBlock
                                            failureBlock:failureBlock];
 }
+
 
 @end
 

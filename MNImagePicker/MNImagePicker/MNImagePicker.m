@@ -13,7 +13,6 @@
 @interface MNImagePicker () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic) UIViewController *container;
-@property (nonatomic) MNImagePickerConfig *config;
 
 @end
 
@@ -21,11 +20,13 @@
 
 static ALAssetsLibrary *assetsLibrary;
 
-- (instancetype)init:(UIViewController *)controller config:(MNImagePickerConfig *)config
+- (instancetype)init:(UIViewController *)controller config:(MNImagePickerConfig *)config delegate:(id<MNImagePickerDelegate>)delegate
 {
     if ([super init]) {
+        self.delegate = delegate;
         self.container = controller;
         self.config = config;
+        self.images = @[];
         if (assetsLibrary == nil) {
             assetsLibrary = [ALAssetsLibrary new];
         }
@@ -101,7 +102,7 @@ static ALAssetsLibrary *assetsLibrary;
     
     MNAlbumsController *ctl = navi.viewControllers.firstObject;
     ctl.showPhotos = true;
-    
+    ctl.picker = self;
     [_container presentViewController:navi animated:true completion:^{
         
     }];
@@ -113,7 +114,7 @@ static ALAssetsLibrary *assetsLibrary;
     UIImage *result = [info objectForKey:_config.allowCameraEditing ? UIImagePickerControllerEditedImage : UIImagePickerControllerOriginalImage];
     NSData *imageData = UIImageJPEGRepresentation(result, _config.compressQuality);
     _imageByCamera = [UIImage imageWithData:imageData];
-    
+    [_delegate imagePickerDidFinishedFromCamera];
     [picker dismissViewControllerAnimated:true completion:^{
         NSLog(@"照片文件大小：%ld，宽：%f, 高：%f", [imageData length] / 1024, _imageByCamera.size.width,_imageByCamera.size.height);
     }];

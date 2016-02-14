@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MNImagePicker.h"
 
 @interface MNAlbumsController : UIViewController
 
+@property (nonatomic) MNImagePicker *picker;
 /**
  *  是否跳转至照片选择
  */

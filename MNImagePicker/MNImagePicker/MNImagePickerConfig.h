@@ -25,6 +25,8 @@
  */
 @property (nonatomic) CGFloat compressQuality;
 
+@property (nonatomic) NSUInteger maxCount;
+
 + (MNImagePickerConfig *)defaultConfig;
 
 @end
