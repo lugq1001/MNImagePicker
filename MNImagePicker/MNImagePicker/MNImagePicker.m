@@ -12,6 +12,7 @@
 
 @interface MNImagePicker () <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+
 @property (nonatomic) UIViewController *container;
 
 @end
