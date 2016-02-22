@@ -25,8 +25,20 @@
  */
 @property (nonatomic) CGFloat compressQuality;
 
+/**
+ *  最多选择图片数
+ */
 @property (nonatomic) NSUInteger maxCount;
+
+/**
+ *  当前图片数
+ */
+@property (nonatomic) NSUInteger currnetCount;
 
 + (MNImagePickerConfig *)defaultConfig;
 
 @end
+
+
+
+

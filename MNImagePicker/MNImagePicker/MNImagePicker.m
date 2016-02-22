@@ -41,7 +41,7 @@ static ALAssetsLibrary *assetsLibrary;
     [sheet showInView:_container.view];
 }
 
-- (void)startPickerWithAlbums:(NSUInteger)pickCount
+- (void)startPickerWithAlbums
 {
     NSLog(@"从手机相册选择");
     if (![self checkAlbumsPermission]) {
@@ -79,7 +79,7 @@ static ALAssetsLibrary *assetsLibrary;
             [self startPickerWithCamera];
             break;
         case 1:
-            [self startPickerWithAlbums:0];
+            [self startPickerWithAlbums];
             break;
         case 2:
             NSLog(@"取消");

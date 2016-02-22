@@ -72,7 +72,7 @@ static UIImage *checkedImage;
 
 - (void)updateCount {
     NSUInteger max = _picker.config.maxCount;
-    NSUInteger current = _albumCtl.images.count;
+    NSUInteger current = _albumCtl.images.count + _picker.config.currnetCount;
     _iCountLabel.text = [NSString stringWithFormat:@"%ld/%ld", current , max];
 }
 
@@ -113,7 +113,7 @@ static UIImage *checkedImage;
         if ([self hasSelected:photo]) {
             [self removeSelected:photo];
         } else {
-            if (_albumCtl.images.count < _picker.config.maxCount) {
+            if (_albumCtl.images.count + _picker.config.currnetCount < _picker.config.maxCount) {
                 [_albumCtl.images addObject:photo];
             }
         }

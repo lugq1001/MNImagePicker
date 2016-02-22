@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     MNImagePickerConfig *config = [MNImagePickerConfig defaultConfig];
-    config.maxCount = 3;
+    config.maxCount = 9;
     _picker = [[MNImagePicker alloc] init:self config:config delegate:self];
 }
 
@@ -29,7 +29,8 @@
 }
 
 - (IBAction)album:(id)sender {
-    [_picker startPickerWithAlbums:0];
+    _picker.config.currnetCount = 3;
+    [_picker startPickerWithAlbums];
 }
 
 - (IBAction)capture:(id)sender {

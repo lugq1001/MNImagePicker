@@ -33,10 +33,11 @@
 /**
  *  选测选取
  */
-- (void)startPickerWithAlbums:(NSUInteger)pickCount;
+- (void)startPickerWithAlbums;
 /**
  *  相机拍照
  */
 - (void)startPickerWithCamera;
+
 
 @end
