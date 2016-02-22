@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,21 +18,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DNC-wn-l09">
-                                <rect key="frame" x="233" y="285" width="135" height="30"/>
+                                <rect key="frame" x="233" y="247" width="135" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="135" id="693-UF-OJt"/>
-                                    <constraint firstAttribute="height" constant="30" id="gfj-pE-Pfw"/>
+                                    <constraint firstAttribute="width" constant="135" id="faF-hG-5pX"/>
                                 </constraints>
                                 <state key="normal" title="选取照片"/>
                                 <connections>
                                     <action selector="choose:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SSg-2M-NZO"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lru-Ke-aTf">
+                                <rect key="frame" x="233" y="285" width="135" height="30"/>
+                                <state key="normal" title="相册"/>
+                                <connections>
+                                    <action selector="album:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VjQ-IS-ZAe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d0R-Uh-gQn">
+                                <rect key="frame" x="233" y="323" width="135" height="30"/>
+                                <state key="normal" title="拍照"/>
+                                <connections>
+                                    <action selector="capture:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g1z-GW-eg3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="DNC-wn-l09" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="J0x-vT-Ri3"/>
-                            <constraint firstItem="DNC-wn-l09" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ex7-PB-nj8"/>
+                            <constraint firstItem="d0R-Uh-gQn" firstAttribute="top" secondItem="Lru-Ke-aTf" secondAttribute="bottom" constant="8" symbolic="YES" id="075-3u-NAh"/>
+                            <constraint firstItem="Lru-Ke-aTf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="5C1-Ww-H2Q"/>
+                            <constraint firstItem="Lru-Ke-aTf" firstAttribute="leading" secondItem="DNC-wn-l09" secondAttribute="leading" id="7VL-oJ-ayH"/>
+                            <constraint firstItem="Lru-Ke-aTf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YkW-5L-AoF"/>
+                            <constraint firstItem="d0R-Uh-gQn" firstAttribute="leading" secondItem="Lru-Ke-aTf" secondAttribute="leading" id="bIf-A1-ahS"/>
+                            <constraint firstItem="Lru-Ke-aTf" firstAttribute="top" secondItem="DNC-wn-l09" secondAttribute="bottom" constant="8" symbolic="YES" id="mmg-Gx-jkL"/>
+                            <constraint firstItem="Lru-Ke-aTf" firstAttribute="trailing" secondItem="d0R-Uh-gQn" secondAttribute="trailing" id="oyq-va-aam"/>
+                            <constraint firstItem="Lru-Ke-aTf" firstAttribute="trailing" secondItem="DNC-wn-l09" secondAttribute="trailing" id="xGj-9X-nw6"/>
                         </constraints>
                     </view>
                 </viewController>

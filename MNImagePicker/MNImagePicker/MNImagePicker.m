@@ -41,6 +41,28 @@ static ALAssetsLibrary *assetsLibrary;
     [sheet showInView:_container.view];
 }
 
+- (void)startPickerWithAlbums
+{
+    NSLog(@"从手机相册选择");
+    if (![self checkAlbumsPermission]) {
+        NSString *tips = kAlbumPermissionTips;
+        [self showMessage:tips];
+        return;
+    }
+    [self pickWithAlbum];
+}
+
+- (void)startPickerWithCamera
+{
+    NSLog(@"拍照");
+    if (![self checkCameraPermission]) {
+        NSString *tips = kCameraPermissionTips;
+        [self showMessage:tips];
+        return;
+    }
+    [self pickWithCamera];
+}
+
 + (ALAssetsLibrary *)assetsLib
 {
     if (assetsLibrary == nil) {
@@ -59,22 +81,10 @@ static ALAssetsLibrary *assetsLibrary;
 {
     switch (buttonIndex) {
         case 0:
-            NSLog(@"拍照");
-            if (![self checkCameraPermission]) {
-                NSString *tips = kCameraPermissionTips;
-                [self showMessage:tips];
-                return;
-            }
-            [self pickWithCamera];
+            [self startPickerWithCamera];
             break;
         case 1:
-            NSLog(@"从手机相册选择");
-            if (![self checkAlbumsPermission]) {
-                NSString *tips = kAlbumPermissionTips;
-                [self showMessage:tips];
-                return;
-            }
-            [self pickWithAlbum];
+            [self startPickerWithAlbums];
             break;
         case 2:
             NSLog(@"取消");

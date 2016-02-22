@@ -23,8 +23,13 @@
 
 @implementation MNPhotosController
 
+static UIImage *checkImage;
+static UIImage *checkedImage;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    checkImage = [UIImage imageNamed:@"ic_uncheck.png"];
+    checkedImage = [UIImage imageNamed:@"ic_check.png"];
     self.view.backgroundColor = [UIColor whiteColor];
     _iCollectionView.backgroundColor = [UIColor whiteColor];
     _iCollectionView.collectionViewLayout = [self layout];
@@ -91,7 +96,11 @@
     CGImageRef ref = [result thumbnail];
     UIImage *img = [[UIImage alloc] initWithCGImage:ref];
     cell.iImageView.image = img;
-    cell.iCheckImage.hidden = ![self hasSelected:result];
+    if ([self hasSelected:result]) {
+        cell.iCheckImage.image = checkedImage;
+    } else {
+        cell.iCheckImage.image = checkImage;
+    }
     return cell;
 }
 

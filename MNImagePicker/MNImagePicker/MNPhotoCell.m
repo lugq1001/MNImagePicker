@@ -12,10 +12,6 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    _iCheckImage.image = [UIImage imageNamed:@"ic_check.png"];
-    _iCheckImage.layer.cornerRadius = _iCheckImage.bounds.size.width / 2;
-    _iCheckImage.backgroundColor = [UIColor whiteColor];
-    _iCheckImage.hidden = true;
 }
 
 @end

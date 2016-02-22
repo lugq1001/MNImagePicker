@@ -28,6 +28,15 @@
     [_picker startPicker];
 }
 
+- (IBAction)album:(id)sender {
+    [_picker startPickerWithAlbums];
+}
+
+- (IBAction)capture:(id)sender {
+    [_picker startPickerWithCamera];
+}
+
+
 - (void)imagePickerDidFinishedFromAlbum {
     NSLog(@"选择相册照片:%ld",_picker.images.count);
 }
@@ -35,6 +44,8 @@
 - (void)imagePickerDidFinishedFromCamera {
     NSLog(@"拍摄照片:%d",_picker.imageByCamera == nil ? 0 : 1);
 }
+
+
 
 
 @end

@@ -37,5 +37,7 @@
  *  清除拍照图片
  */
 - (void)clearCameraImage;
+- (void)startPickerWithAlbums;
+- (void)startPickerWithCamera;
 
 @end
