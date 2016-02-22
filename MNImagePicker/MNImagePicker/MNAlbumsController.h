@@ -12,6 +12,8 @@
 @interface MNAlbumsController : UIViewController
 
 @property (nonatomic) MNImagePicker *picker;
+@property (nonatomic) NSMutableArray *images;
+
 /**
  *  是否跳转至照片选择
  */

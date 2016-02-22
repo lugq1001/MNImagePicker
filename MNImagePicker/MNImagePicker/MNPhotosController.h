@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "MNImagePicker.h"
+#import "MNAlbumsController.h"
 
 @interface MNPhotosController : UIViewController
 
 @property (nonatomic) MNImagePicker *picker;
+@property (nonatomic) MNAlbumsController *albumCtl;
 @property (nonatomic) ALAssetsGroup *album;
 
 @end

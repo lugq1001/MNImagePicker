@@ -13,8 +13,8 @@
 
 @protocol MNImagePickerDelegate
 
-- (void)imagePickerDidFinishedFromAlbum;
-- (void)imagePickerDidFinishedFromCamera;
+- (void)imagePickerDidFinishedFromAlbum:(NSArray<ALAsset *> *)assets;
+- (void)imagePickerDidFinishedFromCamera:(UIImage *)image;
 
 @end
 
@@ -22,9 +22,6 @@
 
 @property (nonatomic) id<MNImagePickerDelegate> delegate;
 @property (nonatomic) MNImagePickerConfig *config;
-@property (nonatomic) UIImage *imageByCamera;
-@property (nonatomic) NSMutableArray *images;
-
 
 - (instancetype)init:(UIViewController *)controller config:(MNImagePickerConfig *)config delegate:(id<MNImagePickerDelegate>)delegate;
 
@@ -34,13 +31,9 @@
 + (ALAssetsLibrary *)assetsLib;
 
 /**
- *  清除拍照图片
- */
-- (void)clearCameraImage;
-/**
  *  选测选取
  */
-- (void)startPickerWithAlbums;
+- (void)startPickerWithAlbums:(NSUInteger)pickCount;
 /**
  *  相机拍照
  */

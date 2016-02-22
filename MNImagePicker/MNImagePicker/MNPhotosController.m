@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *iCountLabel;
 @property (weak, nonatomic) IBOutlet UIView *iCountView;
 
-@property (nonatomic) NSArray *photos;
+@property (nonatomic) NSArray *allPhotos;
 
 @end
 
@@ -28,8 +28,8 @@ static UIImage *checkedImage;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    checkImage = [UIImage imageNamed:@"ic_uncheck.png"];
-    checkedImage = [UIImage imageNamed:@"ic_check.png"];
+    checkImage = [UIImage imageNamed:@"mn_ic_uncheck.png"];
+    checkedImage = [UIImage imageNamed:@"mn_ic_check.png"];
     self.view.backgroundColor = [UIColor whiteColor];
     _iCollectionView.backgroundColor = [UIColor whiteColor];
     _iCollectionView.collectionViewLayout = [self layout];
@@ -52,19 +52,19 @@ static UIImage *checkedImage;
         _iCollectionView.contentInset = UIEdgeInsetsMake(64, 0, 44, 0);
     }
     [self updateCount];
-    _photos = @[];
+    _allPhotos = @[];
     [MNImagePickerHelper loadPhotos:_album completion:^(NSArray *photos) {
-        _photos = photos;
+        _allPhotos = photos;
         [_iCollectionView reloadData];
-        if (_photos.count > 0) {
-            [_iCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_photos.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:false];
+        if (_allPhotos.count > 0) {
+            [_iCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:_allPhotos.count - 1 inSection:0] atScrollPosition:UICollectionViewScrollPositionBottom animated:false];
         }
         
     }];
 }
 
 - (void)dismiss {
-    [_picker.delegate imagePickerDidFinishedFromAlbum];
+    [_picker.delegate imagePickerDidFinishedFromAlbum:_albumCtl.images];
     [self.navigationController dismissViewControllerAnimated:true completion:^{
         
     }];
@@ -72,7 +72,7 @@ static UIImage *checkedImage;
 
 - (void)updateCount {
     NSUInteger max = _picker.config.maxCount;
-    NSUInteger current = _picker.images.count;
+    NSUInteger current = _albumCtl.images.count;
     _iCountLabel.text = [NSString stringWithFormat:@"%ld/%ld", current , max];
 }
 
@@ -87,12 +87,12 @@ static UIImage *checkedImage;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _photos.count;
+    return _allPhotos.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     MNPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MNPhotoCell" forIndexPath:indexPath];
-    ALAsset *result = [_photos objectAtIndex:indexPath.row];
+    ALAsset *result = [_allPhotos objectAtIndex:indexPath.row];
     CGImageRef ref = [result thumbnail];
     UIImage *img = [[UIImage alloc] initWithCGImage:ref];
     cell.iImageView.image = img;
@@ -105,16 +105,16 @@ static UIImage *checkedImage;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    ALAsset *photo = [_photos objectAtIndex:indexPath.row];
+    ALAsset *photo = [_allPhotos objectAtIndex:indexPath.row];
     if (_picker.config.maxCount == 1) {
-        _picker.images = [[NSMutableArray alloc] initWithArray:@[photo]];
+        _albumCtl.images = [[NSMutableArray alloc] initWithArray:@[photo]];
         [self dismiss];
     } else {
         if ([self hasSelected:photo]) {
             [self removeSelected:photo];
         } else {
-            if (_picker.images.count < _picker.config.maxCount) {
-                [_picker.images addObject:photo];
+            if (_albumCtl.images.count < _picker.config.maxCount) {
+                [_albumCtl.images addObject:photo];
             }
         }
         [self updateCount];
@@ -138,7 +138,7 @@ static UIImage *checkedImage;
 
 - (BOOL)hasSelected:(ALAsset *)photo {
     NSURL *u = photo.defaultRepresentation.url;
-    for (ALAsset *a in _picker.images) {
+    for (ALAsset *a in _albumCtl.images) {
         if ([a.defaultRepresentation.url isEqual:u]) {
             return true;
         }
@@ -148,10 +148,10 @@ static UIImage *checkedImage;
 
 - (void)removeSelected:(ALAsset *)photo {
     NSURL *u = photo.defaultRepresentation.url;
-    for (NSUInteger i = 0; i < _picker.images.count; i++) {
-        ALAsset *a = _picker.images[i];
+    for (NSUInteger i = 0; i < _albumCtl.images.count; i++) {
+        ALAsset *a = _albumCtl.images[i];
         if ([a.defaultRepresentation.url isEqual:u]) {
-            [_picker.images removeObjectAtIndex:i];
+            [_albumCtl.images removeObjectAtIndex:i];
         }
     }
 }

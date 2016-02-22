@@ -29,7 +29,7 @@
 }
 
 - (IBAction)album:(id)sender {
-    [_picker startPickerWithAlbums];
+    [_picker startPickerWithAlbums:0];
 }
 
 - (IBAction)capture:(id)sender {
@@ -37,12 +37,12 @@
 }
 
 
-- (void)imagePickerDidFinishedFromAlbum {
-    NSLog(@"选择相册照片:%ld",_picker.images.count);
+- (void)imagePickerDidFinishedFromAlbum:(NSArray<ALAsset *> *)assets {
+    NSLog(@"选择相册照片:%ld",assets.count);
 }
 
-- (void)imagePickerDidFinishedFromCamera {
-    NSLog(@"拍摄照片:%d",_picker.imageByCamera == nil ? 0 : 1);
+- (void)imagePickerDidFinishedFromCamera:(UIImage *)image {
+    NSLog(@"拍摄照片:%d",image == nil ? 0 : 1);
 }
 
 

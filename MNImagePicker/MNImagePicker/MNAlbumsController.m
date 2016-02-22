@@ -27,6 +27,7 @@
     UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
     self.navigationItem.leftBarButtonItem = left;
     _albums = @[];
+    _images = [NSMutableArray new];
     [MNImagePickerHelper loadAlbums:^(NSArray *albums) {
         _albums = albums;
         [_iTableView reloadData];
@@ -52,6 +53,7 @@
     MNPhotosController *ctl = [sb instantiateViewControllerWithIdentifier:@"MNPhotosController"];
     ctl.album = album;
     ctl.picker = self.picker;
+    ctl.albumCtl = self;
     [self.navigationController pushViewController:ctl animated:animation];
 }
 

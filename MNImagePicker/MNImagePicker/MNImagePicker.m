@@ -27,7 +27,6 @@ static ALAssetsLibrary *assetsLibrary;
         self.delegate = delegate;
         self.container = controller;
         self.config = config;
-        self.images = [NSMutableArray new];
         if (assetsLibrary == nil) {
             assetsLibrary = [ALAssetsLibrary new];
         }
@@ -42,7 +41,7 @@ static ALAssetsLibrary *assetsLibrary;
     [sheet showInView:_container.view];
 }
 
-- (void)startPickerWithAlbums
+- (void)startPickerWithAlbums:(NSUInteger)pickCount
 {
     NSLog(@"从手机相册选择");
     if (![self checkAlbumsPermission]) {
@@ -72,11 +71,6 @@ static ALAssetsLibrary *assetsLibrary;
     return assetsLibrary;
 }
 
-- (void)clearCameraImage
-{
-    _imageByCamera = nil;
-}
-
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -85,7 +79,7 @@ static ALAssetsLibrary *assetsLibrary;
             [self startPickerWithCamera];
             break;
         case 1:
-            [self startPickerWithAlbums];
+            [self startPickerWithAlbums:0];
             break;
         case 2:
             NSLog(@"取消");
@@ -124,10 +118,10 @@ static ALAssetsLibrary *assetsLibrary;
 {
     UIImage *result = [info objectForKey:_config.allowCameraEditing ? UIImagePickerControllerEditedImage : UIImagePickerControllerOriginalImage];
     NSData *imageData = UIImageJPEGRepresentation(result, _config.compressQuality);
-    _imageByCamera = [UIImage imageWithData:imageData];
-    [_delegate imagePickerDidFinishedFromCamera];
+    result = [UIImage imageWithData:imageData];
+    [_delegate imagePickerDidFinishedFromCamera:result];
     [picker dismissViewControllerAnimated:true completion:^{
-        NSLog(@"照片文件大小：%ld，宽：%f, 高：%f", [imageData length] / 1024, _imageByCamera.size.width,_imageByCamera.size.height);
+        NSLog(@"照片文件大小：%ld，宽：%f, 高：%f", [imageData length] / 1024, result.size.width,result.size.height);
     }];
 }
 
