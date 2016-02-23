@@ -33,7 +33,7 @@
 /**
  *  当前图片数
  */
-@property (nonatomic) NSUInteger currnetCount;
+@property (nonatomic) NSInteger currnetCount;
 
 + (MNImagePickerConfig *)defaultConfig;
 
